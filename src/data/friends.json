@@ -1,0 +1,50 @@
+[
+    {
+      "id": 1,
+      "name": "David Kim",
+      "picture": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400",
+      "email": "david.kim@example.com",
+      "days_since_contact": 42,
+      "status": "overdue",
+      "tags": ["Work"],
+      "bio": "Former colleague, great mentor!",
+      "goal": 30,
+      "next_due_date": "2026-06-15"
+    },
+    {
+      "id": 2,
+      "name": "Emma Wilson",
+      "picture": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400",
+      "email": "emma.w@example.com",
+      "days_since_contact": 62,
+      "status": "overdue",
+      "tags": ["Family"],
+      "bio": "Cousin based out in Boston.",
+      "goal": 30,
+      "next_due_date": "2026-04-20"
+    },
+    {
+      "id": 3,
+      "name": "Lisa Nakamura",
+      "picture": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400",
+      "email": "lisa.n@example.com",
+      "days_since_contact": 5,
+      "status": "on-track",
+      "tags": ["Uni"],
+      "bio": "Study partner from engineering school.",
+      "goal": 14,
+      "next_due_date": "2026-06-05"
+    },
+    {
+      "id": 4,
+      "name": "James Wright",
+      "picture": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400",
+      "email": "james.w@example.com",
+      "days_since_contact": 12,
+      "status": "almost due",
+      "tags": ["Design", "Travel"],
+      "bio": "Met during hiking camp. Graphic wizard.",
+      "goal": 14,
+      "next_due_date": "2026-05-28"
+    }
+  ]
