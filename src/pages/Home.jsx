@@ -19,7 +19,6 @@ export default function Home() {
 
   return (
     <div className="space-y-10 max-w-5xl mx-auto py-6">
-      {/* Banner Banner */}
       <section className="text-center space-y-3 max-w-xl mx-auto">
         <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">
           Friends to keep close in your life
@@ -31,8 +30,6 @@ export default function Home() {
           <span>+ Add a friend</span>
         </button>
       </section>
-
-      {/* 4 Summary Cards Grid */}
       <section className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
           { label: 'Total Friends', val: totalFriends },
@@ -46,8 +43,6 @@ export default function Home() {
           </div>
         ))}
       </section>
-
-      {/* Friends Grid System */}
       <section className="space-y-4">
         <h2 className="text-sm font-extrabold text-slate-900 uppercase tracking-wider">Your Friends</h2>
         {loading ? (

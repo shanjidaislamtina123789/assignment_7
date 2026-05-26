@@ -20,7 +20,7 @@ export default function Timeline() {
       <div className="flex justify-between items-center border-b border-gray-100 pb-3">
         <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">Timeline</h1>
         
-        {/* Challenge Filter Menu */}
+  
         <select 
           value={filter} 
           onChange={(e) => setFilter(e.target.value)}
