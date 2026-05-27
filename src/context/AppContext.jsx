@@ -15,7 +15,8 @@ export const AppProvider = ({ children }) => {
     setFriends(initialFriends);
   }, []);
 
-  const addInteraction = (friendName, type) => {
+  // 🎯 ফিক্সড: ফাংশনটির নাম 'logInteraction' করা হলো যাতে FriendDetails-এর সাথে ম্যাচ করে
+  const logInteraction = (friendName, type) => {
     const newEvent = {
       id: Date.now(),
       title: `${type} with ${friendName}`,
@@ -33,7 +34,8 @@ export const AppProvider = ({ children }) => {
   };
 
   return (
-    <AppContext.Provider value={{ friends, timeline, addInteraction }}>
+    // 🎯 ফিক্সড: value-তে logInteraction পাস করা হয়েছে
+    <AppContext.Provider value={{ friends, timeline, logInteraction }}>
       {children}
     </AppContext.Provider>
   );

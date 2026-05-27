@@ -1,111 +1,107 @@
 import React, { useContext } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
-import toast from 'react-hot-toast';
-import { Phone, MessageSquare, Video, ArrowLeft, Edit2 } from 'lucide-react';
+import { Phone, MessageSquare, Video, ArrowLeft } from 'lucide-react';
+import { toast } from 'react-toastify'; 
 
 export default function FriendDetails() {
   const { id } = useParams();
-  const { friends, addInteraction } = useContext(AppContext);
+  const navigate = useNavigate();
+  const { friends, logInteraction } = useContext(AppContext);
   const friend = friends.find(f => f.id === parseInt(id));
 
-  if (!friend) {
-    return (
-      <div className="text-center py-16 space-y-4">
-        <p className="text-gray-500 font-medium">Friend profiles record empty.</p>
-        <Link to="/" className="text-xs font-bold text-[#244D3F] inline-flex items-center gap-1"><ArrowLeft className="w-3 h-3"/> Dashboard</Link>
-      </div>
-    );
-  }
+  if (!friend) return <div className="text-center py-20 text-gray-500 font-bold">Friend not found</div>;
 
-  const triggerCheckIn = (type) => {
-    addInteraction(friend.name, type);
-    toast.success(`Interaction logged with ${friend.name}`, {
-      style: { fontSize: '12px', borderRadius: '8px', background: '#244D3F', color: '#fff' }
+  const statusConfig = {
+    'on-track': { bg: 'bg-[#E6F4EA]', text: 'text-[#137333]', label: 'On Track' },
+    'almost due': { bg: 'bg-[#FEF7E0]', text: 'text-[#B06000]', label: 'Almost Due' },
+    'overdue': { bg: 'bg-[#FCE8E6]', text: 'text-[#C5221F]', label: 'Overdue' }
+  };
+  const currentStatus = statusConfig[friend.status] || { bg: 'bg-gray-100', text: 'text-gray-700', label: friend.status };
+
+  const handleAction = (type) => {
+    logInteraction(friend.name, type);
+
+    toast.success(`${type} with ${friend.name} logged successfully! 🚀`, {
+      position: "top-right",
+      autoClose: 3000,
+      theme: "light",
     });
   };
 
   return (
-    <div className="max-w-5xl mx-auto py-6 space-y-6">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-        
-        <div className="lg:col-span-4 bg-white border border-gray-100 rounded-2xl p-6 shadow-sm space-y-6 text-center">
-          <div className="space-y-3 flex flex-col items-center">
-            <img src={friend.picture} alt={friend.name} className="w-20 h-20 rounded-full object-cover border" />
-            <div>
-              <h2 className="text-lg font-bold text-slate-800">{friend.name}</h2>
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-50 text-rose-600 border border-rose-100 capitalize inline-block mt-1">
-                {friend.status}
-              </span>
-            </div>
-            <div className="flex justify-center">
-              <span className="bg-emerald-50 text-[#244D3F] text-[10px] px-2 py-0.5 rounded font-bold uppercase tracking-wider">
-                {friend.tags[0]}
-              </span>
-            </div>
-            <p className="text-xs text-gray-400 italic font-medium">"{friend.bio}"</p>
-            <p className="text-[11px] text-gray-400 font-medium">{friend.email}</p>
-          </div>
+    <div className="max-w-6xl mx-auto py-10 px-4">
+      <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-gray-400 font-bold text-sm mb-10 hover:text-[#244D3F]">
+        <ArrowLeft size={16} /> Back to Dashboard
+      </button>
 
-          <div className="pt-4 border-t border-gray-50 flex flex-col gap-2">
-            <button className="w-full text-left text-xs font-semibold py-2 px-3 hover:bg-gray-50 rounded-lg text-gray-600 flex items-center gap-2 border border-gray-100">
-              <span>⏰</span> Snooze 2 Weeks
-            </button>
-            <button className="w-full text-left text-xs font-semibold py-2 px-3 hover:bg-gray-50 rounded-lg text-gray-600 flex items-center gap-2 border border-gray-100">
-              <span>📦</span> Archive
-            </button>
-            <button className="w-full text-left text-xs font-bold py-2 px-3 bg-rose-50 hover:bg-rose-100 rounded-lg text-rose-600 flex items-center gap-2 border border-rose-100/50">
-              <span>🗑️</span> Delete
-            </button>
-          </div>
-        </div>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
-
-        <div className="lg:col-span-8 space-y-4">
-     
-          <div className="grid grid-cols-3 gap-4">
-            <div className="bg-white border border-gray-100 p-4 rounded-xl shadow-sm text-center">
-              <p className="text-xl font-black text-slate-800">{friend.days_since_contact}</p>
-              <p className="text-[9px] font-bold text-gray-400 uppercase tracking-wider mt-0.5">Days Since Contact</p>
-            </div>
-            <div className="bg-white border border-gray-100 p-4 rounded-xl shadow-sm text-center">
-              <p className="text-xl font-black text-[#244D3F]">{friend.goal}</p>
-              <p className="text-[9px] font-bold text-gray-400 uppercase tracking-wider mt-0.5">Goal (Days)</p>
-            </div>
-            <div className="bg-white border border-gray-100 p-4 rounded-xl shadow-sm text-center">
-              <p className="text-xs font-bold text-slate-800 py-1">{friend.next_due_date}</p>
-              <p className="text-[9px] font-bold text-gray-400 uppercase tracking-wider mt-1">Next Due</p>
-            </div>
-          </div>
-
-        
-          <div className="bg-white border border-gray-100 p-4 rounded-xl shadow-sm flex justify-between items-center">
-            <div>
-              <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider">Relationship Goal</h4>
-              <p className="text-xs font-bold text-slate-700 mt-1">Connect every <span className="text-[#244D3F] font-black">{friend.goal} days</span></p>
-            </div>
-            <button className="p-1.5 border border-gray-100 hover:bg-gray-50 rounded-lg text-gray-500">
-              <Edit2 className="w-3 h-3" />
-            </button>
-          </div>
-
+        <div className="lg:col-span-5 bg-white rounded-[40px] p-8 shadow-sm border border-gray-50 flex flex-col items-center text-center">
+          <img src={friend.picture} className="w-40 h-40 rounded-full border-8 border-gray-50 mb-6 shadow-md object-cover" alt={friend.name} />
+          <h1 className="text-4xl font-black text-[#244D3F] mb-2">{friend.name}</h1>
           
-          <div className="bg-white border border-gray-100 p-5 rounded-xl shadow-sm space-y-3">
-            <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider">Quick Check-In</h4>
-            <div className="grid grid-cols-3 gap-3">
-              <button onClick={() => triggerCheckIn('Call')} className="flex flex-col sm:flex-row items-center justify-center gap-1.5 py-3 border border-gray-100 hover:bg-gray-50 rounded-xl text-slate-700 font-bold text-xs">
-                <Phone className="w-3.5 h-3.5 text-emerald-600" /> Call
-              </button>
-              <button onClick={() => triggerCheckIn('Text')} className="flex flex-col sm:flex-row items-center justify-center gap-1.5 py-3 border border-gray-100 hover:bg-gray-50 rounded-xl text-slate-700 font-bold text-xs">
-                <MessageSquare className="w-3.5 h-3.5 text-blue-600" /> Text
-              </button>
-              <button onClick={() => triggerCheckIn('Video')} className="flex flex-col sm:flex-row items-center justify-center gap-1.5 py-3 border border-gray-100 hover:bg-gray-50 rounded-xl text-slate-700 font-bold text-xs">
-                <Video className="w-3.5 h-3.5 text-purple-600" /> Video
-              </button>
-            </div>
+          <span className={`text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest ${currentStatus.bg} ${currentStatus.text} mb-4`}>
+            {currentStatus.label}
+          </span>
+
+          <div className="flex flex-wrap justify-center gap-1 mb-4">
+            {friend.tags?.map((tag, idx) => (
+              <span key={idx} className="bg-gray-50 text-gray-500 text-[10px] font-bold px-2.5 py-0.5 rounded-md border">#{tag}</span>
+            ))}
+          </div>
+
+          <p className="text-gray-600 text-sm max-w-sm mb-4 leading-relaxed">{friend.bio}</p>
+          <p className="text-xs text-gray-400 font-medium mb-10">{friend.email}</p>
+
+          <div className="w-full space-y-2 pt-4 border-t border-gray-50">
+            <button className="w-full py-2.5 bg-gray-50 text-gray-700 font-bold text-xs rounded-xl">⏰ Snooze 2 Weeks</button>
+            <button className="w-full py-2.5 bg-gray-50 text-gray-700 font-bold text-xs rounded-xl">📦 Archive</button>
+            <button className="w-full py-2.5 bg-rose-50 text-rose-600 font-bold text-xs rounded-xl">🗑️ Delete</button>
           </div>
         </div>
 
+        <div className="lg:col-span-7 space-y-6">
+
+          <div className="grid grid-cols-3 gap-6 text-center">
+            <div className="bg-white p-5 rounded-3xl border border-gray-50 shadow-sm">
+              <span className="block text-2xl font-black text-[#244D3F]">{friend.days_since_contact}</span>
+              <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest">Days Since Contact</p>
+            </div>
+            <div className="bg-white p-5 rounded-3xl border border-gray-50 shadow-sm">
+              <span className="block text-2xl font-black text-[#244D3F]">{friend.goal}</span>
+              <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest">Goal (Days)</p>
+            </div>
+            <div className="bg-white p-5 rounded-3xl border border-gray-50 shadow-sm">
+              <span className="block text-xs font-black text-[#244D3F] py-2 truncate">{friend.next_due_date}</span>
+              <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest">Next Due Date</p>
+            </div>
+          </div>
+
+          <div className="bg-white p-6 rounded-3xl border border-gray-50 shadow-sm flex justify-between items-center">
+            <div>
+              <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-1">Relationship Goal</span>
+              <p className="text-gray-700 text-sm font-medium">Keep contact every <span className="font-extrabold text-[#244D3F]">{friend.goal} days</span></p>
+            </div>
+            <button className="p-2.5 bg-gray-50 text-gray-600 rounded-xl">Edit</button>
+          </div>
+
+          <div className="bg-white p-6 rounded-3xl border border-gray-50 shadow-sm space-y-4">
+            <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest block">Quick Check-In</span>
+            <div className="grid grid-cols-3 gap-4">
+              <button onClick={() => handleAction('Call')} className="flex flex-col items-center justify-center p-4 bg-[#F8FAFC] hover:bg-[#244D3F] hover:text-white rounded-2xl text-[#244D3F] font-bold text-xs gap-2 transition-all">
+                <Phone size={18} /> Call
+              </button>
+              <button onClick={() => handleAction('Text')} className="flex flex-col items-center justify-center p-4 bg-[#F8FAFC] hover:bg-[#244D3F] hover:text-white rounded-2xl text-[#244D3F] font-bold text-xs gap-2 transition-all">
+                <MessageSquare size={18} /> Text
+              </button>
+              <button onClick={() => handleAction('Video')} className="flex flex-col items-center justify-center p-4 bg-[#F8FAFC] hover:bg-[#244D3F] hover:text-white rounded-2xl text-[#244D3F] font-bold text-xs gap-2 transition-all">
+                <Video size={18} /> Video
+              </button>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
   );

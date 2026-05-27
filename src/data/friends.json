@@ -1,50 +1,122 @@
 [
-    {
-      "id": 1,
-      "name": "David Kim",
-      "picture": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400",
-      "email": "david.kim@example.com",
-      "days_since_contact": 42,
-      "status": "overdue",
-      "tags": ["Work"],
-      "bio": "Former colleague, great mentor!",
-      "goal": 30,
-      "next_due_date": "2026-06-15"
-    },
-    {
-      "id": 2,
-      "name": "Emma Wilson",
-      "picture": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400",
-      "email": "emma.w@example.com",
-      "days_since_contact": 62,
-      "status": "overdue",
-      "tags": ["Family"],
-      "bio": "Cousin based out in Boston.",
-      "goal": 30,
-      "next_due_date": "2026-04-20"
-    },
-    {
-      "id": 3,
-      "name": "Lisa Nakamura",
-      "picture": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400",
-      "email": "lisa.n@example.com",
-      "days_since_contact": 5,
-      "status": "on-track",
-      "tags": ["Uni"],
-      "bio": "Study partner from engineering school.",
-      "goal": 14,
-      "next_due_date": "2026-06-05"
-    },
-    {
-      "id": 4,
-      "name": "James Wright",
-      "picture": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400",
-      "email": "james.w@example.com",
-      "days_since_contact": 12,
-      "status": "almost due",
-      "tags": ["Design", "Travel"],
-      "bio": "Met during hiking camp. Graphic wizard.",
-      "goal": 14,
-      "next_due_date": "2026-05-28"
-    }
-  ]
+  {
+    "id": 1,
+    "name": "David Kim",
+    "picture": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face",
+    "email": "david.kim@example.com",
+    "days_since_contact": 2,
+    "status": "on-track",
+    "tags": ["college", "close friend"],
+    "bio": "Met in university. Love hiking together.",
+    "goal": 14,
+    "next_due_date": "2026-06-05"
+  },
+  {
+    "id": 2,
+    "name": "Emma Wilson",
+    "picture": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop&crop=face",
+    "email": "emma.w@example.com",
+    "days_since_contact": 12,
+    "status": "almost due",
+    "tags": ["work", "designer"],
+    "bio": "Graphic designer and digital nomad.",
+    "goal": 14,
+    "next_due_date": "2026-05-28"
+  },
+  {
+    "id": 3,
+    "name": "Lisa Nakamura",
+    "picture": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&h=200&fit=crop&crop=face",
+    "email": "lisa.n@example.com",
+    "days_since_contact": 22,
+    "status": "overdue",
+    "tags": ["school", "vinyl"],
+    "bio": "UI/UX Researcher who loves reading books.",
+    "goal": 14,
+    "next_due_date": "2026-05-18"
+  },
+  {
+    "id": 4,
+    "name": "Marcus Vance",
+    "picture": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=200&h=200&fit=crop&crop=face",
+    "email": "marcus.v@example.com",
+    "days_since_contact": 1,
+    "status": "on-track",
+    "tags": ["music", "jazz"],
+    "bio": "Data analyst by day, jazz pianist by night.",
+    "goal": 7,
+    "next_due_date": "2026-06-02"
+  },
+  {
+    "id": 5,
+    "name": "Sophia Martinez",
+    "picture": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=200&h=200&fit=crop&crop=face",
+    "email": "sophia.m@example.com",
+    "days_since_contact": 9,
+    "status": "almost due",
+    "tags": ["foodie", "neighbor"],
+    "bio": "Content creator and food blogger.",
+    "goal": 10,
+    "next_due_date": "2026-05-27"
+  },
+  {
+    "id": 6,
+    "name": "Alex Mercer",
+    "picture": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop&crop=face",
+    "email": "alex.mercer@example.com",
+    "days_since_contact": 35,
+    "status": "overdue",
+    "tags": ["gaming", "college"],
+    "bio": "Cybersecurity student and gamer.",
+    "goal": 30,
+    "next_due_date": "2026-04-21"
+  },
+  {
+    "id": 7,
+    "name": "Chloe Dupont",
+    "picture": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=200&h=200&fit=crop&crop=face",
+    "email": "chloe.d@example.com",
+    "days_since_contact": 4,
+    "status": "on-track",
+    "tags": ["photography"],
+    "bio": "Fashion photographer and pet lover.",
+    "goal": 14,
+    "next_due_date": "2026-06-03"
+  },
+  {
+    "id": 8,
+    "name": "Ryan Patel",
+    "picture": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200&h=200&fit=crop&crop=face",
+    "email": "ryan.patel@example.com",
+    "days_since_contact": 13,
+    "status": "almost due",
+    "tags": ["iot", "startup"],
+    "bio": "Loves building smart gadgets with Arduino.",
+    "goal": 14,
+    "next_due_date": "2026-05-27"
+  },
+  {
+    "id": 9,
+    "name": "Elena Rostova",
+    "picture": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop&crop=face",
+    "email": "elena.r@example.com",
+    "days_since_contact": 40,
+    "status": "overdue",
+    "tags": ["art", "classical"],
+    "bio": "Architectural engineer and watercolor artist.",
+    "goal": 30,
+    "next_due_date": "2026-04-16"
+  },
+  {
+    "id": 10,
+    "name": "Tom Oscar",
+    "picture": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=face",
+    "email": "tom.oscar@example.com",
+    "days_since_contact": 5,
+    "status": "on-track",
+    "tags": ["fitness", "gym"],
+    "bio": "Fitness coach and health enthusiast.",
+    "goal": 7,
+    "next_due_date": "2026-05-28"
+  }
+]
