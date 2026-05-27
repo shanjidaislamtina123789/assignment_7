@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify'; // 🎯 ফিক্সড: কার্লি ব্র্যাকেট { } যুক্ত করা হয়েছে
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { AppProvider } from './context/AppContext'; // 🎯 ফিক্সড: AppProvider-এ কার্লি ব্র্যাকেট হবে
+import { AppProvider } from './context/AppContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -30,8 +30,7 @@ export default function App() {
           </main>
 
           <Footer />
-          
-          {/* গ্লোবাল টোস্ট কন্টেইনার */}
+
           <ToastContainer position="top-right" autoClose={3000} theme="light" />
         </div>
       </Router>
