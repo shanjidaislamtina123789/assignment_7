@@ -13,10 +13,12 @@ export default function FriendDetails() {
   if (!friend) return <div className="text-center py-20 text-gray-500 font-bold">Friend not found</div>;
 
   const statusConfig = {
-    'on-track': { bg: 'bg-[#E6F4EA]', text: 'text-[#137333]', label: 'On Track' },
-    'almost due': { bg: 'bg-[#FEF7E0]', text: 'text-[#B06000]', label: 'Almost Due' },
-    'overdue': { bg: 'bg-[#FCE8E6]', text: 'text-[#C5221F]', label: 'Overdue' }
+    'on-track': { bg: 'bg-[#244D3F]', text: 'text-white', label: 'On Track' },
+    'almost due': {  bg: 'bg-[#DDA83A]', text: 'text-white', label: 'Almost Due' },
+    'overdue': { bg: 'bg-[#E05353]', text: 'text-white',  label: 'Overdue' }
   };
+
+  
   const currentStatus = statusConfig[friend.status] || { bg: 'bg-gray-100', text: 'text-gray-700', label: friend.status };
 
   const handleAction = (type) => {
@@ -31,9 +33,7 @@ export default function FriendDetails() {
 
   return (
     <div className="max-w-6xl mx-auto py-10 px-4">
-      <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-gray-400 font-bold text-sm mb-10 hover:text-[#244D3F]">
-        <ArrowLeft size={16} /> Back to Dashboard
-      </button>
+     
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
@@ -55,9 +55,9 @@ export default function FriendDetails() {
           <p className="text-xs text-gray-400 font-medium mb-10">{friend.email}</p>
 
           <div className="w-full space-y-2 pt-4 border-t border-gray-50">
-            <button className="w-full py-2.5 bg-gray-50 text-gray-700 font-bold text-xs rounded-xl">⏰ Snooze 2 Weeks</button>
-            <button className="w-full py-2.5 bg-gray-50 text-gray-700 font-bold text-xs rounded-xl">📦 Archive</button>
-            <button className="w-full py-2.5 bg-rose-50 text-rose-600 font-bold text-xs rounded-xl">🗑️ Delete</button>
+            <button className="w-full py-2.5 bg-gray-50 text-gray-700 font-bold text-xs rounded-xl"> Snooze 2 Weeks</button>
+            <button className="w-full py-2.5 bg-gray-50 text-gray-700 font-bold text-xs rounded-xl"> Archive</button>
+            <button className="w-full py-2.5 bg-rose-50 text-rose-600 font-bold text-xs rounded-xl"> Delete</button>
           </div>
         </div>
 
